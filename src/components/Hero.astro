@@ -1,0 +1,100 @@
+---
+import { baseUrl } from '@/utils/functions';
+const logo = baseUrl('/assets/vanilla-extract.svg');
+---
+
+<section>
+  <svg>
+    <filter
+      id='filter'
+      x='-20%'
+      y='-20%'
+      width='140%'
+      height='140%'
+      filterUnits='objectBoundingBox'
+      primitiveUnits='userSpaceOnUse'
+    >
+      <feTurbulence
+        type='fractalNoise'
+        baseFrequency='0.05'
+        numOctaves='2'
+        seed='1'
+        stitchTiles='stitch'
+        result='turbulence'></feTurbulence>
+      <feDiffuseLighting
+        surfaceScale='0.6'
+        diffuseConstant='3'
+        kernelUnitLength='0 0'
+        lighting-color='#ffffff'
+        in='turbulence'
+        result='diffuseLighting'
+      >
+        <feDistantLight azimuth='150' elevation='16'></feDistantLight>
+      </feDiffuseLighting>
+      <feTurbulence
+        type='fractalNoise'
+        baseFrequency='0.011 0.004'
+        numOctaves='2'
+        seed='3'
+        stitchTiles='noStitch'
+        result='turbulence1'></feTurbulence>
+      <feColorMatrix
+        type='saturate'
+        values='3'
+        in='turbulence1'
+        result='colormatrix'></feColorMatrix>
+      <feColorMatrix
+        type='matrix'
+        values='2 0 0 0 0
+  0 1.5 0 0 0
+  0 0 2 0 0
+  0 0 0 2 0'
+        in='colormatrix'
+        result='colormatrix1'></feColorMatrix>
+      <feBlend
+        mode='multiply'
+        in='diffuseLighting'
+        in2='colormatrix1'
+        result='blend'></feBlend>
+      <feComposite in='blend' in2='SourceAlpha' operator='in' result='composite1'
+      ></feComposite>
+    </filter>
+  </svg>
+  <h1>20 PROJECTS WITH VANILLA EXTRACT</h1>
+  <img src={logo} alt='Logo' />
+</section>
+
+<style>
+  section {
+    height: 100vh;
+    position: relative;
+  }
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.6vmax;
+    text-align: center;
+    text-wrap: balance;
+    color: transparent;
+    background-image: var(--gradient-btn);
+    background-clip: text;
+    filter: url(#filter);
+    outline: none;
+
+    &::selection {
+      background: rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  img {
+    width: 4vmax;
+    position: absolute;
+    top: 64%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translateY(0.3vmax);
+  }
+</style>

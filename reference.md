@@ -1,0 +1,2 @@
+- **Reference / Inspiration ⬇️**
+  - [Glowy Hover inspiration](https://codepen.io/inescodes/pen/PoxMyvX)

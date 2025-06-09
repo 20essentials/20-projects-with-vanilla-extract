@@ -1,0 +1,351 @@
+---
+import { baseUrl } from '@/utils/functions';
+const arrayCards = [
+  {
+    title: 'TTT',
+    repo: 'https://github.com/20essentials/project-000-378',
+    web: 'https://20essentials.github.io/project-000-378/',
+    localImage: '/assets/n378.avif',
+    id: '001'
+  },
+  {
+    title: 'Erm',
+    repo: 'https://github.com/20essentials/project-000-249',
+    web: 'https://20essentials.github.io/project-000-249/',
+    localImage: '/assets/n249.avif',
+    id: '002'
+  },
+  {
+    title: 'Ring',
+    repo: 'https://github.com/20essentials/project-000-254',
+    web: 'https://20essentials.github.io/project-000-254/',
+    localImage: '/assets/n254.avif',
+    id: '003'
+  },
+  {
+    title: 'Ruby',
+    repo: 'https://github.com/20essentials/project-000-259',
+    web: 'https://20essentials.github.io/project-000-259/',
+    localImage: '/assets/n259.avif',
+    id: '004'
+  },
+  {
+    title: 'Icohasedron',
+    repo: 'https://github.com/20essentials/project-000-264',
+    web: 'https://20essentials.github.io/project-000-264/',
+    localImage: '/assets/n264.avif',
+    id: '005'
+  },
+  {
+    title: 'Ember',
+    repo: 'https://github.com/20essentials/project-000-269',
+    web: 'https://20essentials.github.io/project-000-269/',
+    localImage: '/assets/n269.avif',
+    id: '006'
+  },
+  {
+    title: 'Snick',
+    repo: 'https://github.com/20essentials/project-000-276',
+    web: 'https://20essentials.github.io/project-000-276/',
+    localImage: '/assets/n276.avif',
+    id: '007'
+  },
+  {
+    title: 'Simetria',
+    repo: 'https://github.com/20essentials/project-000-286',
+    web: 'https://20essentials.github.io/project-000-286/',
+    localImage: '/assets/n286.avif',
+    id: '008'
+  },
+  {
+    title: 'Pentagon',
+    repo: 'https://github.com/20essentials/project-000-294',
+    web: 'https://20essentials.github.io/project-000-294/',
+    localImage: '/assets/n294.avif',
+    id: '009'
+  },
+  {
+    title: 'Relax',
+    repo: 'https://github.com/20essentials/project-000-300',
+    web: 'https://20essentials.github.io/project-000-300/',
+    localImage: '/assets/n300.avif',
+    id: '010'
+  },
+  {
+    title: 'Ultraman',
+    repo: 'https://github.com/20essentials/project-000-308',
+    web: 'https://20essentials.github.io/project-000-308/',
+    localImage: '/assets/n308.avif',
+    id: '011'
+  },
+  {
+    title: 'Dvd ScreenSaver',
+    repo: 'https://github.com/20essentials/project-000-314',
+    web: 'https://20essentials.github.io/project-000-314/',
+    localImage: '/assets/n314.avif',
+    id: '012'
+  },
+  {
+    title: 'Background Trim',
+    repo: 'https://github.com/20essentials/project-000-320',
+    web: 'https://20essentials.github.io/project-000-320/',
+    localImage: '/assets/n320.avif',
+    id: '013'
+  },
+  {
+    title: 'Game of Thrones Slider',
+    repo: 'https://github.com/20essentials/project-000-326',
+    web: 'https://20essentials.github.io/project-000-326/',
+    localImage: '/assets/n326.avif',
+    id: '014'
+  },
+  {
+    title: 'Background SSS',
+    repo: 'https://github.com/20essentials/project-000-333',
+    web: 'https://20essentials.github.io/project-000-333/',
+    localImage: '/assets/n333.avif',
+    id: '015'
+  },
+  {
+    title: 'Barbie Slider',
+    repo: 'https://github.com/20essentials/project-000-340',
+    web: 'https://20essentials.github.io/project-000-340/',
+    localImage: '/assets/n340.avif',
+    id: '016'
+  },
+  {
+    title: 'Bojack Horseman VT',
+    repo: 'https://github.com/20essentials/project-000-355',
+    web: 'https://20essentials.github.io/project-000-355/',
+    localImage: '/assets/n355.avif',
+    id: '017'
+  },
+  {
+    title: 'Fight Clud Slider',
+    repo: 'https://github.com/20essentials/project-000-361',
+    web: 'https://20essentials.github.io/project-000-361/',
+    localImage: '/assets/n361.avif',
+    id: '018'
+  },
+  {
+    title: 'Ruter',
+    repo: 'https://github.com/20essentials/project-000-368',
+    web: 'https://20essentials.github.io/project-000-368/',
+    localImage: '/assets/n368.avif',
+    id: '019'
+  },
+  {
+    title: 'Simfonia',
+    repo: 'https://github.com/20essentials/project-000-241',
+    web: 'https://20essentials.github.io/project-000-241/',
+    localImage: '/assets/n241.avif',
+
+    id: '020'
+  }
+];
+
+const lightness = '51.37%';
+
+const cardsWithColors = arrayCards.map(card => {
+  const hue = (Math.random() * 360).toFixed(2);
+  const saturation = (Math.random() * 100).toFixed(2) + '%';
+  return { ...card, hue, saturation };
+});
+---
+
+<div class='cards'>
+  {
+    cardsWithColors.map(({ id, repo, localImage, title, hue, saturation }) => (
+      <div
+        class='card'
+        style={`--hue:${hue}; --saturation:${saturation}; --lightness:${lightness}`}
+      >
+        <h3 class='card__heading'>{title}</h3>
+        <a class='container-img' href={repo}>
+          <img src={baseUrl(localImage)} alt={title} />
+        </a>
+      </div>
+    ))
+  }
+
+  <div class='overlay' aria-hidden='true'>
+    {
+      cardsWithColors.map(({ id, repo, localImage, title, hue, saturation }) => (
+        <div
+          class='card card-overlay'
+          style={`--hue:${hue}; --saturation:${saturation}; --lightness:${lightness}`}
+        >
+          <h3 class='card__heading'>{title}</h3>
+          <a class='container-img' href={repo}>
+            <img src={baseUrl(localImage)} alt={title} />
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cardsContainer = document.querySelector(".cards");
+    const overlay = document.querySelector(".overlay");
+
+    if (!cardsContainer || !overlay) {
+      console.error("No se encontraron los elementos .cards o .overlay");
+      return;
+    }
+
+    const realCards = Array.from(
+      cardsContainer.querySelectorAll(".card:not(.overlay .card)")
+    );
+    const overlayCards = Array.from(
+      overlay.querySelectorAll(".card")
+    );
+
+    const pxToVmax = (px) => {
+      const vmax = Math.max(window.innerWidth, window.innerHeight);
+      return `${(px / vmax) * 100}vmax`;
+    };
+
+    const updateOverlayCardStyles = () => {
+      realCards.forEach((card, index) => {
+        const overlayCard = overlayCards[index];
+        if (!overlayCard) return;
+
+        const rect = card.getBoundingClientRect();
+
+        overlayCard.style.width = pxToVmax(rect.width);
+        overlayCard.style.height = pxToVmax(rect.height);
+        overlayCard.style.position = "absolute";
+        overlayCard.style.top = pxToVmax(card.offsetTop);
+        overlayCard.style.left = pxToVmax(card.offsetLeft);
+        overlayCard.style.pointerEvents = "none";
+        overlayCard.style.borderRadius = "0.9vmax";
+      });
+    };
+
+    const onPointerMove = (e) => {
+      const rect = cardsContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      overlay.style.setProperty("--opacity", "1");
+      overlay.style.setProperty("--x", pxToVmax(x));
+      overlay.style.setProperty("--y", pxToVmax(y));
+    };
+
+    const onPointerLeave = () => {
+      overlay.style.setProperty("--opacity", "0");
+    };
+
+    cardsContainer.addEventListener("pointermove", onPointerMove);
+    cardsContainer.addEventListener("pointerleave", onPointerLeave);
+    window.addEventListener("resize", updateOverlayCardStyles);
+
+    updateOverlayCardStyles(); // Inicial
+  });
+</script>
+
+
+<style>
+  .cards {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    padding: 2.2vmax;
+    gap: 2.2vmax;
+    grid-template-columns: repeat(auto-fit, minmax(17vmax, 1fr));
+    place-content: center;
+    place-items: center;
+  }
+
+  .card {
+    --hsl: var(--hue), var(--saturation), var(--lightness);
+    aspect-ratio: 16 / 9;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    align-items: start;
+    color: #eceff1;
+    gap: 1.2vmax;
+    background-color: #2b2b2b;
+    border: 0.0625vmax solid #eceff133;
+    border-radius: 0.9vmax;
+    cursor: pointer;
+    transition: background 400ms ease;
+    min-width: 16vmax;
+    width: 100%;
+    padding: 1.2vmax;
+    background: hsla(var(--hsl), 0.1);
+    display: flex;
+    flex-direction: column;
+    
+
+    &.card-overlay {
+      * {
+        opacity: 0;
+      }
+    }
+
+    .container-img {
+      aspect-ratio: 16 / 9;
+      display: flex;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .card:nth-child(1) {
+    --hue: 165;
+    --saturation: 82.26%;
+    --lightness: 51.37%;
+  }
+
+  .card:nth-child(2) {
+    --hue: 291.34;
+    --saturation: 95.9%;
+    --lightness: 61.76%;
+  }
+
+  .card:nth-child(3) {
+    --hue: 338.69;
+    --saturation: 100%;
+    --lightness: 48.04%;
+  }
+
+  .card:hover {
+    --lightness: 95%;
+  }
+
+  .card__heading {
+    font-size: 1.2vmax;
+    font-weight: 600;
+    display: flex;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    user-select: none;
+    opacity: var(--opacity, 0);
+    mask: radial-gradient(
+      25rem 25rem at var(--x) var(--y),
+      #000 1%,
+      transparent 50%
+    );
+    transition:
+      400ms mask ease,
+      opacity 400ms ease;
+    will-change: mask;
+  }
+  .overlay .card {
+    background-color: hsla(var(--hsl), 0.15);
+    border-color: hsla(var(--hsl), 1);
+    box-shadow: 0 0 0 0.0625vmax inset hsl(var(--hsl));
+    border-radius: 0.9vmax;
+  }
+</style>

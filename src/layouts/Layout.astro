@@ -1,0 +1,104 @@
+---
+import '@/styles/global.css';
+import { baseUrl } from '@/utils/functions';
+const favicon = baseUrl('/assets/favicon.webp');
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name="google" content="notranslate" />
+    <link rel='icon' type='image/svg+xml' href={favicon} />
+    <title>20 Projects With Vanilla Extract</title>
+  </head>
+  <body>
+    <section class='super-section'></section>
+    <slot />
+  </body>
+</html>
+
+<style>
+  .super-section {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  :global(.circle) {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    aspect-ratio: 1/1;
+    background: currentColor;
+    box-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor,
+      0 0 50px currentColor;
+    border-radius: 50%;
+    animation: animate 5s linear forwards;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 25%;
+      width: 50%;
+      height: 100vh;
+      opacity: 0.5;
+      background: linear-gradient(
+        currentColor, transparent
+      );
+    }
+  }
+
+  @keyframes animate {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  import { $ } from '@/utils/functions';
+  const $section = $('.super-section') as HTMLElement;
+  const colors = ["cyan", "rgb(255, 87, 235)", "orange", "lime"];
+
+  function drawLines() {
+    const element = document.createElement('div');
+    const duration = Math.random() * 3;
+    const size = Math.random() * 12;
+    element.classList.add('circle');
+    element.style.widows = `${2 + size}px`;
+    element.style.left = `${Math.random() * window.innerWidth}px`;
+    element.style.animationDuration = `${2 + duration}s`;
+    element.style.color = colors[~~(Math.random() * colors.length)]
+    $section?.appendChild(element);
+
+    setTimeout(() => $section?.removeChild(element), 5000);
+  }
+
+  setInterval(() => {
+    drawLines();
+  }, 200);
+</script>
+
+<!-- <script>
+  window.addEventListener('resize', e => {
+    document.title = `${window.innerWidth}`;
+  });
+</script> -->
