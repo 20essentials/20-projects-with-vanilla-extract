@@ -185,7 +185,7 @@ const cardsWithColors = arrayCards.map(card => {
   </div>
 </div>
 
-<script is:inline>
+<script>
   document.addEventListener('DOMContentLoaded', () => {
     const cardsContainer = document.querySelector('.cards');
     const overlay = document.querySelector('.overlay');
@@ -194,11 +194,6 @@ const cardsWithColors = arrayCards.map(card => {
       console.error('No se encontraron los elementos .cards o .overlay');
       return;
     }
-
-    const realCards = Array.from(
-      cardsContainer.querySelectorAll('.card:not(.overlay .card)')
-    );
-    const overlayCards = Array.from(overlay.querySelectorAll('.card'));
 
     const pxToVmax = px => {
       const vmax = Math.max(window.innerWidth, window.innerHeight);
@@ -245,7 +240,7 @@ const cardsWithColors = arrayCards.map(card => {
     color: #eceff1;
     gap: 1.2vmax;
     background-color: #2b2b2b;
-    border: 0.0625vmax solid #eceff133;
+    border: 0.1vmax solid #eceff133;
     border-radius: 0.9vmax;
     cursor: pointer;
     transition: background 400ms ease;
@@ -279,8 +274,9 @@ const cardsWithColors = arrayCards.map(card => {
   }
 
   .card__heading {
-    font-size: 1.2vmax;
+    font-size: 1.1vmax;
     font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
   }
 

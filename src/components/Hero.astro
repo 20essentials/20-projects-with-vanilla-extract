@@ -94,7 +94,10 @@ const logo = baseUrl('/assets/vanilla-extract.svg');
     position: absolute;
     top: 64%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    transform: translateY(0.3vmax);
+    transform: translateX(-50%);
+
+    @media (width <= 1111px) and (orientation: portrait) {
+      top: 59%;
+    }
   }
 </style>
